@@ -109,7 +109,7 @@ class SignUp extends Component{
                                                     className = "form-control input-sm"
                                                     placeholder = "Password"
                                                     value = {this.state.password}
-                                                    onCharge = {this.onInputCheck}
+                                                    onChange = {this.onInputCheck}
                                                 />
                                             </div>
                                             <div className = "col-xs-6 col-sm-6 col-md-6">
@@ -121,7 +121,7 @@ class SignUp extends Component{
                                                         className = "form-control input-sm"
                                                         placeholder = "Confirm Password"
                                                         value = {this.state.checkPass}
-                                                        onCharge = {this.onInputCheck}
+                                                        onChange = {this.onInputCheck}
                                                     />
                                                 </div>
                                             </div>
