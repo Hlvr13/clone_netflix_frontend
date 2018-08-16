@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormErrors from '../FormErrors/formErrors';
+import login from '../../services/login';
 
 class Login extends Component{
 
@@ -59,6 +60,21 @@ class Login extends Component{
             return <p>error</p>
         }
 
+        submitForm = (e) => {
+            e.preventDefault();
+            login(this.state).then((resp) => {
+                if(resp.status === 200){
+                    let token = resp.data.token;
+                    localStorage.setItem('token',token);
+                    this.props.history.push('/');
+                }else{
+                    console.log(resp.data);
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
     render(){
         return(
             <div className = "login-page">
@@ -69,7 +85,7 @@ class Login extends Component{
                     <div>
                         <p>{this.error}</p>
                     </div>
-                    <form className = "login-form">
+                    <form className = "login-form" onSubmit = {this.submitForm}>
                         <div className = {`form-group ${this.errorClass(this.state.formErrors.email)}`}>
                             <label htmlFor = "email">Email Address</label>
                             <input type = "email" required className = "form-control" name = "email"
@@ -83,7 +99,7 @@ class Login extends Component{
                             onChange = {this.handleUserInput} />
                         </div>
 
-                        <button type = "button">Login</button>
+                        <button type = "submit">Login</button>
                         <p>¿No te has registrado? Crea una nueva cuenta.</p>
                     </form>
                 </div>
