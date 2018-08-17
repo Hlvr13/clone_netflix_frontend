@@ -10,6 +10,7 @@ export default () => {
             query:`
                 query{
                     allMovies{
+                        _id,
                         image,
                         name,
                         genre{
